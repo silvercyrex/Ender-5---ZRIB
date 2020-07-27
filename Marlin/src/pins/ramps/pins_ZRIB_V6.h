@@ -264,9 +264,9 @@ D69   Port: K7		 E1_TEMP		A15
 #define LCD_PINS_D4	   	17 // ST7920_CLK_PIN	LCD_PIN_ENABLE	(PIN6 of LCD module)
 
 // Alter timing for graphical display
-#define ST7920_DELAY_1 	DELAY_2_NOP
-#define ST7920_DELAY_2 	DELAY_2_NOP
-#define ST7920_DELAY_3 	DELAY_2_NOP
+#define BOARD_ST7920_DELAY_1 DELAY_NS(96)
+#define BOARD_ST7920_DELAY_2 DELAY_NS(48)
+#define BOARD_ST7920_DELAY_3 DELAY_NS(600)
 #elif ENABLED(REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)
 #define	LCDSCREEN_NAME	"Reprap LCD12864"
 //USE EXP1 & EXP2 CONNECTOR
@@ -274,9 +274,9 @@ D69   Port: K7		 E1_TEMP		A15
 #define LCD_PINS_ENABLE 17 // ST7920_DAT_PIN	LCD_PIN_ENABLE
 #define LCD_PINS_D4	   	23 // ST7920_CLK_PIN	LCD_PIN_R/W 
 // Alter timing for graphical display
-#define ST7920_DELAY_1 	DELAY_2_NOP
-#define ST7920_DELAY_2 	DELAY_2_NOP
-#define ST7920_DELAY_3 	DELAY_2_NOP
+#define BOARD_ST7920_DELAY_1 DELAY_NS(96)
+#define BOARD_ST7920_DELAY_2 DELAY_NS(48)
+#define BOARD_ST7920_DELAY_3 DELAY_NS(600)
 #endif
 //================================================================================
 //OLED 128x64

@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -101,28 +101,16 @@
   #endif
 
 #elif ENABLED(U8GLIB_SSD1306)
-  #if ENABLED(ZONESTAR_12864OLED)
-  
-   // Generic SSD1306 OLED SPI LCD
-   
-   #define FORCE_SOFT_SPI                                        // SW-SPI
-   #if ENABLED(ALTERNATIVE_LCD)
-    #define U8G_CLASS U8GLIB_SH1106_128X64_2X                   // 4 stripes
-   #else
-    #define U8G_CLASS U8GLIB_SH1106_128X64                      // 8 stripes
-   #endif
-  #else
-  
-   // Generic SSD1306 OLED I2C LCD
-   
-   #if ENABLED(ALTERNATIVE_LCD)
+
+  // Generic SSD1306 OLED I2C LCD
+
+  #if ENABLED(ALTERNATIVE_LCD)
     #define U8G_CLASS U8GLIB_SSD1306_128X64_2X_I2C_2_WIRE       // 4 stripes
-   #else
+  #else
     #define U8G_CLASS U8GLIB_SSD1306_128X64_2X                  // 4 stripes
-   #endif
-   #define U8G_PARAM (U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST)
   #endif
-  
+  #define U8G_PARAM (U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST)
+
 #elif ENABLED(MKS_12864OLED)
 
   // MKS 128x64 (SH1106) OLED I2C LCD
@@ -135,29 +123,17 @@
     #define U8G_CLASS U8GLIB_SH1106_128X64                      // 8 stripes
   #endif
 
-#elif ENABLED(U8GLIB_SH1106)  
+#elif ENABLED(U8GLIB_SH1106)
 
-  #if ENABLED(ZONESTAR_12864OLED)
-  
-   // Generic SH1106 OLED SPI LCD   
-   #define FORCE_SOFT_SPI                                        // SW-SPI
-   #if ENABLED(ALTERNATIVE_LCD)
-    #define U8G_CLASS U8GLIB_SH1106_128X64_2X                   // 4 stripes
-   #else
-    #define U8G_CLASS U8GLIB_SH1106_128X64                      // 8 stripes
-   #endif
-   
- #else
- 
-  // Generic SH1106 OLED I2C LCD  
+  // Generic SH1106 OLED I2C LCD
+
   #if ENABLED(ALTERNATIVE_LCD)
     #define U8G_CLASS U8GLIB_SH1106_128X64_2X_I2C_2_WIRE        // 4 stripes
   #else
     #define U8G_CLASS U8GLIB_SH1106_128X64_2X                   // 4 stripes
   #endif
   #define U8G_PARAM (U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST)       // I2C
- #endif
- 
+
 #elif ENABLED(U8GLIB_SSD1309)
 
   // Generic support for SSD1309 OLED I2C LCDs
@@ -171,7 +147,7 @@
 
   #define U8G_CLASS U8GLIB_MINI12864_2X_HAL                     // 4 stripes
 
-#elif ENABLED(MKS_MINI_12864)
+#elif EITHER(MKS_MINI_12864, ENDER2_STOCKDISPLAY)
 
   // The MKS_MINI_12864 V1/V2 aren't exact copies of the MiniPanel.
   // Panel management is in u8g_dev_uc1701_mini12864_HAL.cpp with
@@ -218,13 +194,6 @@
   #else
     #define U8G_PARAM DOGLCD_CS, DOGLCD_A0                      // HW-SPI
   #endif
-#endif
-
-#ifndef LCD_PIXEL_WIDTH
-  #define LCD_PIXEL_WIDTH 128
-#endif
-#ifndef LCD_PIXEL_HEIGHT
-  #define LCD_PIXEL_HEIGHT 64
 #endif
 
 // LCD_FULL_PIXEL_WIDTH =
